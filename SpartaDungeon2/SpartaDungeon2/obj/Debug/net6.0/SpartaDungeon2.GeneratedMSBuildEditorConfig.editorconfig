@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SpartaDungeon2
-build_property.ProjectDir = D:\Workspace\SpartaDungeon2\SpartaDungeon2\
+build_property.ProjectDir = D:\Workspace\SpartaDungeon2\TeamTextGame\SpartaDungeon2\SpartaDungeon2\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
