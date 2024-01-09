@@ -8,10 +8,6 @@ namespace SpartaDungeon2
 {
     internal class Program
     {
-        public void gusdnd()
-        {
-            Console.WriteLine("안녕하세요");
-        }
 
         private static PlayerStat playerStat;
         private static ItemData itemData;
