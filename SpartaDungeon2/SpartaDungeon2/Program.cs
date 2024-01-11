@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Runtime.InteropServices.ComTypes;
 using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata;
 
 namespace SpartaDungeon2
 {
@@ -11,6 +12,11 @@ namespace SpartaDungeon2
 
         private static PlayerStat playerStat;
         private static ItemData itemData;
+        private static EnemyStat Minion;
+        private static EnemyStat VoidInsect;
+        private static EnemyStat CanonMinion;
+
+        
 
         static List<ItemData> itemsInDatabase = new List<ItemData>();
         static List<ItemData> playerEquippedItems = new List<ItemData>();
@@ -80,6 +86,29 @@ namespace SpartaDungeon2
             }
         }
 
+        public class EnemyStat // 적 클래스 생성
+        {
+            public string Name;
+            public int Level;
+            public int HpValue;
+            public int AtkValue;
+
+            public EnemyStat(string _name, int _level, int _hpValue, int _atkValue)
+            {
+                Name = _name;
+                Level = _level;
+                HpValue = _hpValue;
+                AtkValue = _atkValue;
+            }
+        }
+
+        static void EnemyDataSet() // 적 데이터 생성
+        {
+           Minion = new EnemyStat("미니언", 2, 15, 5);
+           VoidInsect = new EnemyStat("공허충", 3, 10, 9);
+           CanonMinion = new EnemyStat("대포미니언", 5, 25, 8);
+        }
+
         static void PlayerDataSet()
         {
             playerStat = new PlayerStat("Chad", "전사", 1, 10, 5, 100, 1500);
@@ -89,6 +118,7 @@ namespace SpartaDungeon2
         {
             PlayerDataSet();
             ItemsDatabase();
+            EnemyDataSet(); // 게임 시작할때 적 데이터 세팅
             MainScene();
         }
 
@@ -110,13 +140,13 @@ namespace SpartaDungeon2
                     Status();
                     break;
 
-                case "2":
-                    Inventory();
-                    break;
+                // case "2":
+                //     Inventory();
+                //     break;
 
-                case "3":
-                    Store();
-                    break;
+                // case "3":
+                //     Store();
+                //     break;
 
                 default:
                     AnyKey();
