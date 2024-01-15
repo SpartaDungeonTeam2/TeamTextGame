@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Runtime.InteropServices.ComTypes;
 using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata;
+using System;
 
 namespace SpartaDungeon2
 {
     internal class Program
     {
+        private static Random random = new Random();
 
         private static PlayerStat playerStat;
         private static ItemData itemData;
 
         static List<ItemData> itemsInDatabase = new List<ItemData>();
         static List<ItemData> playerEquippedItems = new List<ItemData>();
+        static List<EnemyStat> enemyList = new List<EnemyStat>();
 
         static void ItemsDatabase()
         {
@@ -76,7 +80,36 @@ namespace SpartaDungeon2
                 BaseAtkValue = _atkValue;
                 BaseDefValue = _defValue;
                 BaseHpValue = _hpValue;
+            }
 
+            public void PlayerInfo()
+            {
+                Console.WriteLine();
+                Console.WriteLine("[내정보]");
+                Console.WriteLine($"Lv.{Level}  {Name} ({PlayerClass})");
+                Console.WriteLine($"HP {HpValue}/{BaseHpValue}");
+                Console.WriteLine();
+            }
+        }
+
+        public class EnemyStat // 적 클래스 생성
+        {
+            public string Name;
+            public int Level;
+            public int HpValue;
+            public int AtkValue;
+
+            public EnemyStat(string _name, int _level, int _hpValue, int _atkValue)
+            {
+                Name = _name;
+                Level = _level;
+                HpValue = _hpValue;
+                AtkValue = _atkValue;
+            }
+
+            public void MonsterInfo()
+            {
+                Console.WriteLine($"Lv.{Level} {Name} HP {HpValue}");
             }
         }
 
@@ -98,7 +131,7 @@ namespace SpartaDungeon2
             Console.WriteLine();
             Console.WriteLine(" 스파르타 마을에 오신 여러분 환영합니다.\n 이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
             Console.WriteLine();
-            Console.WriteLine(" 1. 상태보기\n 2. 인벤토리\n 3. 상점");
+            Console.WriteLine(" 1. 상태 보기\n 2. 전투 시작");
             Console.WriteLine();
             Console.WriteLine(" 원하시는 행동을 입력해주세요.");
             Console.Write(" >> ");
@@ -111,12 +144,16 @@ namespace SpartaDungeon2
                     break;
 
                 case "2":
-                    Inventory();
+                    Battle();
                     break;
 
-                case "3":
-                    Store();
-                    break;
+                // case "2":
+                //     inventory();
+                //     break;
+
+                // case "3":
+                //     store();
+                //     break;
 
                 default:
                     AnyKey();
@@ -163,6 +200,56 @@ namespace SpartaDungeon2
             else
             {
                 AnyKey();
+            }
+        }
+
+        static void Battle()
+        {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine(" Battle!!\n\n");
+
+            // 등장하는 적의 수 (1~4)
+            int randomMonster = random.Next(1, 5);
+
+            // 적 리스트 초기화 진행
+            // enemyList = new List<EnemyStat>();
+
+            // 등장하는 적의 수만큼 반복문 진행
+            for (int i = 0; i < randomMonster; i++)
+            {
+                // 랜덤 적 하나 생성
+                EnemyStat enemy = GetRandomEnemy();
+                // 랜덤 적 하나를 적 리스트에 추가
+                enemyList.Add(enemy);
+                // 랜덤 적 정보 출력
+                enemy.MonsterInfo();
+            }
+
+            // 플레이어 정보 출력
+            playerStat.PlayerInfo();
+
+            Console.WriteLine("1. 공격\n\n");
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+            string input = Console.ReadLine();
+        }
+
+
+        static EnemyStat GetRandomEnemy()
+        {
+            // 1~3 사이의 랜덤 숫자 생성
+            int enemyId = random.Next(1, 4);
+
+            switch (enemyId)
+            {
+                case 1:
+                    return new EnemyStat("미니언", 2, 15, 5);
+                case 2:
+                    return new EnemyStat("공허충", 3, 10, 9);
+                case 3:
+                    return new EnemyStat("대포미니언", 5, 25, 8);
+                default:
+                    return new EnemyStat("미니언", 2, 15, 5);
             }
         }
 
