@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography.X509Certificates;
 using System.Collections.Generic;
 using System.Xml;
 using System.Runtime.InteropServices.ComTypes;
@@ -169,22 +169,26 @@ namespace SpartaDungeon2
             }
         }
 
-        private static bool isBattleFinished()
+        // 4번
+        public static bool isBattleFinished()
         {
             return true;
         }
 
-        private static void PlayerPhase()
+        // 2번
+        public static void PlayerPhase()
         {
 
         }
 
-        private static void EnemyPhase()
+        // 3번
+        public static void EnemyPhase()
         {
 
         }
 
-        private static void PrintBattleResult()
+        // 4번
+        public static void PrintBattleResult()
         {
 
         }
@@ -196,6 +200,8 @@ namespace SpartaDungeon2
             Console.ReadKey(true);
         }
 
+
+        // 영선
         static void InitEnemy()
         {
             enemyList.Clear();
