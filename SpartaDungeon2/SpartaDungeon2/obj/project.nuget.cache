@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "LMwQo7yWpMAa9L+cKcReTjKE+FZWAlPJv1rlUw+Fz2HTfwmO/aBvFuE3E9H89dwz43M82LVYqnLb6PHQYqcAaA==",
+  "dgSpecHash": "n8gNtxYXjHFPXVKeGS//rMBUEXO71hbA+q68Q1ec05QViwnYosVQG+LGjDZyge8HbBh5J1VFrv/jLIGUHsF7nw==",
   "success": true,
-  "projectFilePath": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\GitHub\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\one\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\one\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\one\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\one\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -4,6 +4,8 @@ using System.Xml;
 using System.Runtime.InteropServices.ComTypes;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.Metadata;
+using System.Reflection.Emit;
+using System.Xml.Linq;
 
 namespace SpartaDungeon2
 {
@@ -11,6 +13,7 @@ namespace SpartaDungeon2
     {
         private static PlayerStat player;
         private static List<EnemyStat> enemyList = new List<EnemyStat>();
+        public static int startMe = 0;
 
         public class PlayerStat
         {
@@ -79,10 +82,10 @@ namespace SpartaDungeon2
         static void Main()
         {
             PlayerDataSet();
-            while(true)
+            while (true)
             {
                 MainScene();
-            }            
+            }
         }
 
         static void MainScene()
@@ -154,7 +157,7 @@ namespace SpartaDungeon2
             Console.Write(">>");
             String input = Console.ReadLine();
 
-            if(input == "1")
+            if (input == "1")
             {
                 // 4번
                 while (isBattleFinished())
@@ -178,7 +181,79 @@ namespace SpartaDungeon2
         // 2번
         public static void PlayerPhase()
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine(" Battle!!\n\n");
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                if (enemyList[i].HpValue > 0)
+                {
+                    Console.Write($"{i + 1}. ");
+                    enemyList[i].MonsterInfo();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write($"{i + 1}. ");
+                    Console.WriteLine($"Lv.{enemyList[i].Level} {enemyList[i].Name} Dead");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+            PrintPlayerStatus();
+            Console.WriteLine("0. 취소\n\n대상을 선택해주세요.");
+            Console.Write(">>");
+            startMe = GetPlayerSelect(0, enemyList.Count);
 
+            switch (startMe)
+            {
+                case 0:
+                    EnemyPhase();
+                    break;
+                default:
+                    if (enemyList[startMe - 1].HpValue <= 0)
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                    }
+                    else
+                    {
+                        PlayerPhaseResult();
+                    }
+                    break;
+            }
+        }
+
+        public static void PlayerPhaseResult()
+        {
+            float min = player.AtkValue * 0.9f;
+            float max = player.AtkValue * 1.1f;
+            Random random = new Random();
+            int randomAtk = random.Next((int)Math.Ceiling(min), (int)Math.Ceiling(max)+1);
+
+            Console.Clear();
+            Console.WriteLine($"{player.Name} 의 공격!");
+            Console.Write($"{enemyList[startMe - 1].Name} 을(를) 맞췄습니다.");
+            Console.WriteLine($" [데미지] : {randomAtk}\n");
+            Console.WriteLine($"{enemyList[startMe - 1].Name}");
+            Console.Write($"HP {enemyList[startMe - 1].HpValue}");
+            if ((enemyList[startMe - 1].HpValue -= randomAtk) <= 0)
+            {
+                Console.WriteLine(" - > Dead");
+            }
+            else
+                Console.WriteLine($" - > {enemyList[startMe - 1].HpValue}");
+            Console.WriteLine();
+            Console.WriteLine("0. 다음");
+            Console.WriteLine();
+            Console.Write(">>");
+
+            startMe = GetPlayerSelect(0, 0);
+
+            switch (startMe)
+            {
+                default:
+                    EnemyPhase();
+                    break;
+            }
         }
 
         // 3번
@@ -247,7 +322,7 @@ namespace SpartaDungeon2
 
         static void PrintEnemyStatus()
         {
-            for (int i = 0;i < enemyList.Count;i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
                 enemyList[i].MonsterInfo();
             }
@@ -256,6 +331,22 @@ namespace SpartaDungeon2
         static void PrintPlayerStatus()
         {
             player.PlayerInfo();
+        }
+
+        static int GetPlayerSelect(int start, int end)
+        {
+            int select = 0;
+            bool isNum = false;
+            while (true)
+            {
+                isNum = int.TryParse(Console.ReadLine(), out select);
+                if (!isNum || (select < start || select > end))
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                }
+                else break;
+            }
+            return select;
         }
     }
 }
