@@ -205,7 +205,7 @@ namespace SpartaDungeon2
             }
             PrintPlayerStatus();
             Console.WriteLine("0. 취소\n\n대상을 선택해주세요.");
-            Console.Write(">>");
+            Console.Write(" >> ");
             startMe = GetPlayerSelect(0, enemyList.Count);
 
             switch (startMe)
@@ -259,7 +259,7 @@ namespace SpartaDungeon2
             if (enemyList.Exists(x => x.isAlive == true))
             {
                 Console.WriteLine("아무키나 누르면 적의 차례가 시작됩니다.");
-                Console.Write(">>");
+                Console.Write(" >> ");
                 Console.ReadKey();
             }
             else
