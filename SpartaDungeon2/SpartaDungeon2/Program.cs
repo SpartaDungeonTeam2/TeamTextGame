@@ -164,7 +164,7 @@ namespace SpartaDungeon2
             if (input == "1")
             {
                 // 4번
-                while (isBattleFinished())
+                while (IsBattleFinished())
                 {
                     //2번
                     PlayerPhase();
@@ -175,12 +175,12 @@ namespace SpartaDungeon2
         }
 
         // 4번
-        public static bool isBattleFinished()
+        public static bool IsBattleFinished()
         {
             return true;
         }
 
-        // 플레이어 공격 턴 화면
+        // 관철 - 플레이어 공격 턴 화면
         public static void PlayerPhase()
         {
             Console.Clear();
@@ -228,7 +228,7 @@ namespace SpartaDungeon2
             }
         }
 
-        // 플레이어 전투 결과 화면
+        // 관철 - 플레이어 전투 결과 화면
         public static void PlayerPhaseResult()
         {
             // 플레이어 공격 오차범위 선언 (소숫점 발생 시, 올림 처리)
@@ -409,7 +409,7 @@ namespace SpartaDungeon2
             player.PlayerInfo();
         }
 
-        // 랜덤으로 생성된 몬스터 선택 메서드 (시작 번호, 끝 번호)
+        // 관철 - 랜덤으로 생성된 몬스터 선택 메서드 (시작 번호, 끝 번호)
         static int GetPlayerSelect(int start, int end)
         {
             int select = 0;
