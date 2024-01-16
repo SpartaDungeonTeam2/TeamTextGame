@@ -150,8 +150,8 @@ namespace SpartaDungeon2
 
             Console.WriteLine("1. 공격");
             Console.WriteLine();
-            Console.WriteLine(" 원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
             String input = Console.ReadLine();
 
             if(input == "1")
@@ -184,7 +184,32 @@ namespace SpartaDungeon2
         // 3번
         public static void EnemyPhase()
         {
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                EnemyStat enemy = enemyList[i];
 
+                Random AtkDamage = new Random();
+                int atkDamage = AtkDamage.Next(enemy.AtkValue - 1, enemy.AtkValue + 2);
+
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine("적의 차례입니다.");
+                Console.WriteLine();
+                Console.WriteLine($"Lv. {enemy.Level} {enemy.Name} 의 공격!");
+                Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.     [데미지 : {atkDamage}]");
+                Console.WriteLine();
+                Console.WriteLine($"Lv. {player.Level} {player.Name}");
+                Console.WriteLine($"HP {player.HpValue} -> {player.HpValue - atkDamage}");
+                player.HpValue -= atkDamage;
+                Console.WriteLine();
+                Console.WriteLine("아무키나 누르면 다음으로 넘어갑니다.");
+                Console.Write(" >> ");
+                Console.ReadKey();
+            }
+            Console.Clear();
+            Console.WriteLine("적의 차례가 끝났습니다.");
+            Console.WriteLine("아무키나 누르면 플레이어의 차례가 시작됩니다.");
+            Console.ReadKey();
         }
 
         // 4번
