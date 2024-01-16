@@ -178,7 +178,7 @@ namespace SpartaDungeon2
             return true;
         }
 
-        // 플레이어 공격 턴 화면
+        // 관철 - 플레이어 공격 턴 화면
         public static void PlayerPhase()
         {
             Console.Clear();
@@ -227,7 +227,7 @@ namespace SpartaDungeon2
             }
         }
 
-        // 플레이어 전투 결과 화면
+        // 관철 - 플레이어 전투 결과 화면
         public static void PlayerPhaseResult()
         {
             // 플레이어 공격 오차범위 선언 (소숫점 발생 시, 올림 처리)
@@ -257,7 +257,7 @@ namespace SpartaDungeon2
             Console.ReadKey();
         }
 
-        // 3번
+        // 현웅
         public static void EnemyPhase()
         {
             for (int i = 0; i < enemyList.Count; i++)
@@ -364,7 +364,7 @@ namespace SpartaDungeon2
             player.PlayerInfo();
         }
 
-        // 랜덤으로 생성된 몬스터 선택 메서드 (시작 번호, 끝 번호)
+        // 관철 - 랜덤으로 생성된 몬스터 선택 메서드 (시작 번호, 끝 번호)
         static int GetPlayerSelect(int start, int end)
         {
             int select = 0;
@@ -374,14 +374,10 @@ namespace SpartaDungeon2
             {
                 // int를 bool값으로 변환
                 isNum = int.TryParse(Console.ReadLine(), out select);
-<<<<<<< HEAD
-                if (!isNum || (select < start || select > end))
-                {
-=======
+
                 // 숫자가 아니거나 시작 번호와 끝 번호 사이에 없는 경우
                 if (!isNum || (select < start || select > end))
                 {
->>>>>>> main
                     Console.WriteLine("잘못된 입력입니다.");
                 }
                 else break;

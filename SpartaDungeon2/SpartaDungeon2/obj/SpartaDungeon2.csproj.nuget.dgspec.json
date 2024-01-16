@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj": {}
+    "C:\\Users\\이영선\\스파르타코딩클럽\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj": {}
   },
   "projects": {
-    "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj": {
+    "C:\\Users\\이영선\\스파르타코딩클럽\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
+        "projectUniqueName": "C:\\Users\\이영선\\스파르타코딩클럽\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
         "projectName": "SpartaDungeon2",
-        "projectPath": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\obj\\",
+        "projectPath": "C:\\Users\\이영선\\스파르타코딩클럽\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
+        "packagesPath": "C:\\Users\\이영선\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\이영선\\스파르타코딩클럽\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\이영선\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -50,6 +50,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.25, 6.0.25]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.25, 6.0.25]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.25, 6.0.25]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.25, 6.0.25]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
