@@ -160,7 +160,7 @@ namespace SpartaDungeon2
             if (input == "1")
             {
                 // 4번
-                while (isBattleFinished())
+                while (IsBattleFinished())
                 {
                     //2번
                     PlayerPhase();
@@ -173,7 +173,7 @@ namespace SpartaDungeon2
         }
 
         // 4번
-        public static bool isBattleFinished()
+        public static bool IsBattleFinished()
         {
             for (int i = 0; i < enemyList.Count; i++)
             {
@@ -186,7 +186,7 @@ namespace SpartaDungeon2
 
                 }
             }
-
+            return true;
         }
 
         // 관철 - 플레이어 공격 턴 화면
@@ -214,14 +214,13 @@ namespace SpartaDungeon2
             }
             PrintPlayerStatus();
             Console.WriteLine("0. 취소\n\n대상을 선택해주세요.");
-            Console.Write(">>");
+            Console.Write(" >>");
             startMe = GetPlayerSelect(0, enemyList.Count);
 
             switch (startMe)
             {
                 // 플레이어 턴 스킵
                 case 0:
-                    EnemyPhase();
                     break;
                 // 몬스터 선택
                 default:
@@ -264,7 +263,7 @@ namespace SpartaDungeon2
                 Console.WriteLine($" - > {enemyList[startMe - 1].HpValue}");
             Console.WriteLine();
             Console.WriteLine("아무키나 누르면 적의 차례가 시작됩니다.");
-            Console.Write(">>");
+            Console.Write(" >>");
             Console.ReadKey();
         }
 
