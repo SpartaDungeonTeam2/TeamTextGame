@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\one\\.nuget\\packages\\": {}
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
+      "projectUniqueName": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
       "projectName": "SpartaDungeon2",
-      "projectPath": "D:\\GitHub\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
-      "packagesPath": "C:\\Users\\one\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\obj\\",
+      "projectPath": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\one\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -56,30 +56,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.26, 6.0.26]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.26, 6.0.26]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.26, 6.0.26]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.26, 6.0.26]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

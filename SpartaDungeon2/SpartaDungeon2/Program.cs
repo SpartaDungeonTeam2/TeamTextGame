@@ -266,6 +266,11 @@ namespace SpartaDungeon2
                 Random AtkDamage = new Random();
                 int atkDamage = AtkDamage.Next(enemy.AtkValue - 1, enemy.AtkValue + 2);
 
+                if (enemy.HpValue <= 0)
+                {
+                    continue;
+                }
+
                 Console.Clear();
                 Console.WriteLine();
                 Console.WriteLine("적의 차례입니다.");
