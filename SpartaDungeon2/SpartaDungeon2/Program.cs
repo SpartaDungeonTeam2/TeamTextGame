@@ -267,6 +267,11 @@ namespace SpartaDungeon2
                 Random AtkDamage = new Random();
                 int atkDamage = AtkDamage.Next(enemy.AtkValue - 1, enemy.AtkValue + 2);
 
+                if (enemy.HpValue <= 0)
+                {
+                    continue;
+                }
+
                 Console.Clear();
                 Console.WriteLine();
                 Console.WriteLine("적의 차례입니다.");
@@ -369,9 +374,14 @@ namespace SpartaDungeon2
             {
                 // int를 bool값으로 변환
                 isNum = int.TryParse(Console.ReadLine(), out select);
+<<<<<<< HEAD
+                if (!isNum || (select < start || select > end))
+                {
+=======
                 // 숫자가 아니거나 시작 번호와 끝 번호 사이에 없는 경우
                 if (!isNum || (select < start || select > end))
                 {
+>>>>>>> main
                     Console.WriteLine("잘못된 입력입니다.");
                 }
                 else break;
