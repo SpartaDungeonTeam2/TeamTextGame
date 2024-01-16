@@ -212,7 +212,7 @@ namespace SpartaDungeon2
                 default:
                     if (enemyList[startMe - 1].HpValue <= 0)
                     {
-                        Console.WriteLine("잘못된 입력입니다.");
+                        AnyKey();
                     }
                     else
                     {
