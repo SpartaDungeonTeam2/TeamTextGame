@@ -178,7 +178,7 @@ namespace SpartaDungeon2
             return true;
         }
 
-        // 2번
+        // 
         public static void PlayerPhase()
         {
             Console.Clear();
@@ -212,7 +212,7 @@ namespace SpartaDungeon2
                 default:
                     if (enemyList[startMe - 1].HpValue <= 0)
                     {
-                        AnyKey();
+
                     }
                     else
                     {
@@ -227,9 +227,10 @@ namespace SpartaDungeon2
             float min = player.AtkValue * 0.9f;
             float max = player.AtkValue * 1.1f;
             Random random = new Random();
-            int randomAtk = random.Next((int)Math.Ceiling(min), (int)Math.Ceiling(max)+1);
+            int randomAtk = random.Next((int)Math.Ceiling(min), (int)Math.Ceiling(max) + 1);
 
             Console.Clear();
+            Console.WriteLine();
             Console.WriteLine($"{player.Name} 의 공격!");
             Console.Write($"{enemyList[startMe - 1].Name} 을(를) 맞췄습니다.");
             Console.WriteLine($" [데미지] : {randomAtk}\n");
@@ -242,18 +243,9 @@ namespace SpartaDungeon2
             else
                 Console.WriteLine($" - > {enemyList[startMe - 1].HpValue}");
             Console.WriteLine();
-            Console.WriteLine("0. 다음");
-            Console.WriteLine();
+            Console.WriteLine("아무키나 누르면 적의 차례가 시작됩니다.");
             Console.Write(">>");
-
-            startMe = GetPlayerSelect(0, 0);
-
-            switch (startMe)
-            {
-                default:
-                    EnemyPhase();
-                    break;
-            }
+            Console.ReadKey(true);
         }
 
         // 3번
