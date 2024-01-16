@@ -175,7 +175,7 @@ namespace SpartaDungeon2
         }
 
         // 4번
-        public static bool IsBattleFinished()
+        public static bool IsBattleFinished() // PrintBattleResult(bool victory = true)와 while (IsBattleFinished()) 연동하게 하는 메서드
         {
             return true;
         }
@@ -322,7 +322,7 @@ namespace SpartaDungeon2
         }
 
         // 4번
-        public static void PrintBattleResult(bool victory = true)
+        public static void PrintBattleResult(bool victory = true) // bool true시 승리, false시 패배 출력
         {
             Console.Clear();
             Console.WriteLine("Battle!! - Result|\n");
