@@ -27,6 +27,7 @@ namespace SpartaDungeon2
             public int BaseAtkValue;
             public int BaseDefValue;
             public int BaseHpValue;
+            public bool isAlive;
 
             public PlayerStat(string _name, string _playerClass, int _level, int _atkValue, int _defValue, int _hpValue, int _gold)
             {
@@ -37,6 +38,7 @@ namespace SpartaDungeon2
                 DefValue = _defValue;
                 HpValue = _hpValue;
                 Gold = _gold;
+                isAlive = true;
 
                 BaseAtkValue = _atkValue;
                 BaseDefValue = _defValue;
@@ -59,6 +61,7 @@ namespace SpartaDungeon2
             public int Level;
             public int HpValue;
             public int AtkValue;
+            public bool isAlive;
 
             public EnemyStat(string _name, int _level, int _hpValue, int _atkValue)
             {
@@ -66,6 +69,7 @@ namespace SpartaDungeon2
                 Level = _level;
                 HpValue = _hpValue;
                 AtkValue = _atkValue;
+                isAlive = true;
             }
 
             public void MonsterInfo()
@@ -167,8 +171,6 @@ namespace SpartaDungeon2
                     // 3번
                     EnemyPhase();
                 }
-                // 4번
-                PrintBattleResult();
             }
         }
 
@@ -210,7 +212,6 @@ namespace SpartaDungeon2
             {
                 // 플레이어 턴 스킵
                 case 0:
-                    EnemyPhase();
                     break;
                 // 몬스터 선택
                 default:
@@ -247,14 +248,26 @@ namespace SpartaDungeon2
             if ((enemyList[startMe - 1].HpValue -= randomAtk) <= 0)
             {
                 Console.WriteLine(" - > Dead");
+                enemyList[startMe - 1].isAlive = false;
             }
             // 체력이 0 이상인 몬스터 표시
             else
+            {
                 Console.WriteLine($" - > {enemyList[startMe - 1].HpValue}");
+            }
             Console.WriteLine();
-            Console.WriteLine("아무키나 누르면 적의 차례가 시작됩니다.");
-            Console.Write(">>");
-            Console.ReadKey();
+            if (enemyList.Exists(x => x.isAlive == true))
+            {
+                Console.WriteLine("아무키나 누르면 적의 차례가 시작됩니다.");
+                Console.Write(">>");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.ReadKey(); // 전투 승리 시 정보 표기 안되고 바로 넘어가는 것 방지
+                PrintBattleResult();
+            }
+            
         }
 
         // 3번
@@ -286,17 +299,49 @@ namespace SpartaDungeon2
                 Console.WriteLine("아무키나 누르면 다음으로 넘어갑니다.");
                 Console.Write(" >> ");
                 Console.ReadKey();
+                if (player.HpValue <= 0)
+                {
+                    break;
+                }
             }
-            Console.Clear();
-            Console.WriteLine("적의 차례가 끝났습니다.");
-            Console.WriteLine("아무키나 누르면 플레이어의 차례가 시작됩니다.");
-            Console.ReadKey();
+            if (player.HpValue <= 0)
+            {
+                Console.Clear();
+                player.HpValue = 0;
+                player.isAlive = false;
+                PrintBattleResult(false);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("적의 차례가 끝났습니다.");
+                Console.WriteLine("아무키나 누르면 플레이어의 차례가 시작됩니다.");
+                Console.ReadKey();
+            }
+            
         }
 
         // 4번
-        public static void PrintBattleResult()
+        public static void PrintBattleResult(bool victory = true)
         {
+            Console.Clear();
+            Console.WriteLine("Battle!! - Result|\n");
 
+            if (victory)
+            {
+                Console.WriteLine("Victory\n");
+                Console.WriteLine($"던전에서 몬스터 {enemyList.Count}마리를 잡았습니다.\n");
+            }
+            else
+            {
+                Console.WriteLine("You Lose\n");
+            }
+            Console.WriteLine($"Lv.{player.Level} {player.Name}");
+            Console.WriteLine($"HP {player.BaseHpValue} -> {player.HpValue}\n");
+            Console.WriteLine("아무 키나 누르면 마을로 돌아갑니다.");
+            Console.ReadKey();
+            player.HpValue = player.BaseHpValue; // Hp 리셋
+            MainScene();
         }
 
         static void AnyKey() // 잘못 입력했을때 초기화면으로 돌아가게 해주는 메서드
@@ -374,14 +419,11 @@ namespace SpartaDungeon2
             {
                 // int를 bool값으로 변환
                 isNum = int.TryParse(Console.ReadLine(), out select);
-<<<<<<< HEAD
-                if (!isNum || (select < start || select > end))
-                {
-=======
+
                 // 숫자가 아니거나 시작 번호와 끝 번호 사이에 없는 경우
                 if (!isNum || (select < start || select > end))
                 {
->>>>>>> main
+
                     Console.WriteLine("잘못된 입력입니다.");
                 }
                 else break;
