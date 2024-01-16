@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\com\\.nuget\\packages\\": {}
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\com\\Documents\\GitHub\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
+      "projectUniqueName": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
       "projectName": "SpartaDungeon2",
-      "projectPath": "C:\\Users\\com\\Documents\\GitHub\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
-      "packagesPath": "C:\\Users\\com\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\com\\Documents\\GitHub\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\obj\\",
+      "projectPath": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\com\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -256,31 +256,31 @@ namespace SpartaDungeon2
                 Console.WriteLine($" - > {enemyList[startMe - 1].HpValue}");
             }
             Console.WriteLine();
-            if (enemyList.Exists(x => x.isAlive == true))
+            if (enemyList.Exists(x => x.isAlive == true)) // 해설영상 참고하여 작성한 코드, Exists로 enemyList의 적들의 isAlive가 true인지 확인후 맞다면 출력
             {
                 Console.WriteLine("아무키나 누르면 적의 차례가 시작됩니다.");
                 Console.Write(" >> ");
                 Console.ReadKey();
             }
-            else
+            else // 모든 적이 죽었을때 전투 승리창 출력
             {
                 Console.ReadKey(); // 전투 승리 시 정보 표기 안되고 바로 넘어가는 것 방지
-                PrintBattleResult();
+                PrintBattleResult(); // 기본적으로 PrintBattleResult(bool victory = true)로 되어있어서 따로 true를 써주지 않아도 됨.
             }
             
         }
 
-        // 3번
+        // 현웅 - 적 차례
         public static void EnemyPhase()
         {
-            for (int i = 0; i < enemyList.Count; i++)
+            for (int i = 0; i < enemyList.Count; i++) // 적의 수만큼 적의 공격 반복하게 해주는 for문
             {
                 EnemyStat enemy = enemyList[i];
 
                 Random AtkDamage = new Random();
-                int atkDamage = AtkDamage.Next(enemy.AtkValue - 1, enemy.AtkValue + 2);
+                int atkDamage = AtkDamage.Next(enemy.AtkValue - 1, enemy.AtkValue + 2); // 적 공격데미지 오차범위 ± 1 로 지정
 
-                if (enemy.HpValue <= 0)
+                if (enemy.HpValue <= 0) // 죽은 적의 차례는 스킵
                 {
                     continue;
                 }
@@ -299,15 +299,15 @@ namespace SpartaDungeon2
                 Console.WriteLine("아무키나 누르면 다음으로 넘어갑니다.");
                 Console.Write(" >> ");
                 Console.ReadKey();
-                if (player.HpValue <= 0)
+                if (player.HpValue <= 0) // 플레이어가 죽었을시 반복을 스킵
                 {
                     break;
                 }
             }
-            if (player.HpValue <= 0)
+            if (player.HpValue <= 0) // 플레이어가 죽었을때 패배 화면으로 넘어감
             {
                 Console.Clear();
-                player.HpValue = 0;
+                player.HpValue = 0; // 체력이 음수로 떨어져도 0으로 맞춰줌
                 player.isAlive = false;
                 PrintBattleResult(false);
             }
@@ -322,17 +322,17 @@ namespace SpartaDungeon2
         }
 
         // 4번
-        public static void PrintBattleResult(bool victory = true)
+        public static void PrintBattleResult(bool victory = true) // 전투 결과창
         {
             Console.Clear();
             Console.WriteLine("Battle!! - Result|\n");
 
-            if (victory)
+            if (victory) // 승리 시 출력
             {
                 Console.WriteLine("Victory\n");
                 Console.WriteLine($"던전에서 몬스터 {enemyList.Count}마리를 잡았습니다.\n");
             }
-            else
+            else // 패배 시 출력 (bool victory = false일 경우)
             {
                 Console.WriteLine("You Lose\n");
             }
@@ -340,8 +340,8 @@ namespace SpartaDungeon2
             Console.WriteLine($"HP {player.BaseHpValue} -> {player.HpValue}\n");
             Console.WriteLine("아무 키나 누르면 마을로 돌아갑니다.");
             Console.ReadKey();
-            player.HpValue = player.BaseHpValue; // Hp 리셋
-            MainScene();
+            player.HpValue = player.BaseHpValue; // 승리했든 패배했든 Hp 리셋
+            MainScene(); // 마을로 돌아감
         }
 
         static void AnyKey() // 잘못 입력했을때 초기화면으로 돌아가게 해주는 메서드
