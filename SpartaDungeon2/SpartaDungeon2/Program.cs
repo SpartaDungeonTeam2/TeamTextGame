@@ -172,7 +172,18 @@ namespace SpartaDungeon2
         // 4번
         public static bool isBattleFinished()
         {
-            return true;
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                if (enemyList[i].HpValue <= 0)
+                {
+                    PrintBattleResult(true);
+                }
+                else
+                {
+
+                }
+            }
+
         }
 
         // 2번
@@ -188,9 +199,36 @@ namespace SpartaDungeon2
         }
 
         // 4번
-        public static void PrintBattleResult()
+        public static void PrintBattleResult(bool victory = true)
         {
+            Console.WriteLine("Battle!! - Result|\n");
 
+            if (victory)
+            {
+                Console.WriteLine("Victory\n");
+                Console.WriteLine($"던전에서 몬스터 {enemyList.Count}마리를 잡았습니다.\n");
+            }
+            else
+            {
+                Console.WriteLine("You Lose\n");
+            }
+            Console.WriteLine($"Lv.{player.Level} {player.Name}");
+            Console.WriteLine($"HP {player.BaseHpValue} -> {player.HpValue}\n");
+            Console.WriteLine("0.다음");
+
+            bool isInt = int.TryParse(Console.ReadLine(), out int select);
+            Console.Clear();
+            if (isInt)
+            {
+                switch (select)
+                {
+                    case 0:
+                        break;
+                    default:
+                        PrintBattleResult(victory);
+                        break;
+                }
+            }
         }
 
         static void AnyKey() // 잘못 입력했을때 초기화면으로 돌아가게 해주는 메서드
