@@ -4,6 +4,8 @@ using System.Xml;
 using System.Runtime.InteropServices.ComTypes;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.Metadata;
+using System.Reflection.Emit;
+using System.Xml.Linq;
 
 namespace SpartaDungeon2
 {
@@ -11,6 +13,7 @@ namespace SpartaDungeon2
     {
         private static PlayerStat player;
         private static List<EnemyStat> enemyList = new List<EnemyStat>();
+        public static int startMe = 0;
 
         public class PlayerStat
         {
@@ -79,10 +82,10 @@ namespace SpartaDungeon2
         static void Main()
         {
             PlayerDataSet();
-            while(true)
+            while (true)
             {
                 MainScene();
-            }            
+            }
         }
 
         static void MainScene()
@@ -150,11 +153,11 @@ namespace SpartaDungeon2
 
             Console.WriteLine("1. 공격");
             Console.WriteLine();
-            Console.WriteLine(" 원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">> ");
             String input = Console.ReadLine();
 
-            if(input == "1")
+            if (input == "1")
             {
                 // 4번
                 while (isBattleFinished())
@@ -186,16 +189,119 @@ namespace SpartaDungeon2
 
         }
 
-        // 2번
+        // 관철 - 플레이어 공격 턴 화면
         public static void PlayerPhase()
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine(" Battle!!\n\n");
+            // 몬스터 앞에 숫자 표시
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                if (enemyList[i].HpValue > 0)
+                {
+                    Console.Write($"{i + 1}. ");
+                    enemyList[i].MonsterInfo();
+                }
+                // 체력이 0이하로 떨어진 몬스터 표시
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write($"{i + 1}. ");
+                    Console.WriteLine($"Lv.{enemyList[i].Level} {enemyList[i].Name} Dead");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+            PrintPlayerStatus();
+            Console.WriteLine("0. 취소\n\n대상을 선택해주세요.");
+            Console.Write(">>");
+            startMe = GetPlayerSelect(0, enemyList.Count);
 
+            switch (startMe)
+            {
+                // 플레이어 턴 스킵
+                case 0:
+                    EnemyPhase();
+                    break;
+                // 몬스터 선택
+                default:
+                    // 선택한 몬스터의 체력이 0 이하일 때
+                    if (enemyList[startMe - 1].HpValue <= 0)
+                    {
+                        PlayerPhase();      // 플레이어 공격 턴 화면 표시
+                    }
+                    else
+                    {
+                        PlayerPhaseResult(); // 플레이어 전투 결과 화면 표시
+                    }
+                    break;
+            }
         }
 
-        // 3번
+        // 관철 - 플레이어 전투 결과 화면
+        public static void PlayerPhaseResult()
+        {
+            // 플레이어 공격 오차범위 선언 (소숫점 발생 시, 올림 처리)
+            float min = player.AtkValue * 0.9f;
+            float max = player.AtkValue * 1.1f;
+            Random random = new Random();
+            int randomAtk = random.Next((int)Math.Ceiling(min), (int)Math.Ceiling(max) + 1);
+
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine($"{player.Name} 의 공격!");
+            Console.Write($"{enemyList[startMe - 1].Name} 을(를) 맞췄습니다.");
+            Console.WriteLine($" [데미지] : {randomAtk}\n");
+            Console.WriteLine($"{enemyList[startMe - 1].Name}");
+            Console.Write($"HP {enemyList[startMe - 1].HpValue}");
+            // 체력이 0 이하인 몬스터 표시
+            if ((enemyList[startMe - 1].HpValue -= randomAtk) <= 0)
+            {
+                Console.WriteLine(" - > Dead");
+            }
+            // 체력이 0 이상인 몬스터 표시
+            else
+                Console.WriteLine($" - > {enemyList[startMe - 1].HpValue}");
+            Console.WriteLine();
+            Console.WriteLine("아무키나 누르면 적의 차례가 시작됩니다.");
+            Console.Write(">>");
+            Console.ReadKey();
+        }
+
+        // 현웅
         public static void EnemyPhase()
         {
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                EnemyStat enemy = enemyList[i];
 
+                Random AtkDamage = new Random();
+                int atkDamage = AtkDamage.Next(enemy.AtkValue - 1, enemy.AtkValue + 2);
+
+                if (enemy.HpValue <= 0)
+                {
+                    continue;
+                }
+
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine("적의 차례입니다.");
+                Console.WriteLine();
+                Console.WriteLine($"Lv. {enemy.Level} {enemy.Name} 의 공격!");
+                Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.     [데미지 : {atkDamage}]");
+                Console.WriteLine();
+                Console.WriteLine($"Lv. {player.Level} {player.Name}");
+                Console.WriteLine($"HP {player.HpValue} -> {player.HpValue - atkDamage}");
+                player.HpValue -= atkDamage;
+                Console.WriteLine();
+                Console.WriteLine("아무키나 누르면 다음으로 넘어갑니다.");
+                Console.Write(" >> ");
+                Console.ReadKey();
+            }
+            Console.Clear();
+            Console.WriteLine("적의 차례가 끝났습니다.");
+            Console.WriteLine("아무키나 누르면 플레이어의 차례가 시작됩니다.");
+            Console.ReadKey();
         }
 
         // 4번
@@ -285,7 +391,7 @@ namespace SpartaDungeon2
 
         static void PrintEnemyStatus()
         {
-            for (int i = 0;i < enemyList.Count;i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
                 enemyList[i].MonsterInfo();
             }
@@ -294,6 +400,28 @@ namespace SpartaDungeon2
         static void PrintPlayerStatus()
         {
             player.PlayerInfo();
+        }
+
+        // 관철 - 랜덤으로 생성된 몬스터 선택 메서드 (시작 번호, 끝 번호)
+        static int GetPlayerSelect(int start, int end)
+        {
+            int select = 0;
+            bool isNum = false;
+            // bool값이 true가 될 때까지
+            while (true)
+            {
+                // int를 bool값으로 변환
+                isNum = int.TryParse(Console.ReadLine(), out select);
+
+                // 숫자가 아니거나 시작 번호와 끝 번호 사이에 없는 경우
+                if (!isNum || (select < start || select > end))
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                }
+                else break;
+            }
+            // 선택한 숫자가 존재하는 경우
+            return select;
         }
     }
 }
