@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "LMwQo7yWpMAa9L+cKcReTjKE+FZWAlPJv1rlUw+Fz2HTfwmO/aBvFuE3E9H89dwz43M82LVYqnLb6PHQYqcAaA==",
+  "dgSpecHash": "Vn78NLLk6AOY/Gr66HkNoTKeEb4BeVKGombghVAgUNcuNYEW3nyZdWGHXijKqoikK+0JDXwAtztqnZmNVsfWuA==",
   "success": true,
-  "projectFilePath": "D:\\Workspace\\SpartaDungeon2\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\이영선\\스파르타코딩클럽\\TeamTextGame\\SpartaDungeon2\\SpartaDungeon2\\SpartaDungeon2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\이영선\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\이영선\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\이영선\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\이영선\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
+  ],
   "logs": []
 }

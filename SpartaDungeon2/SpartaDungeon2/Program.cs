@@ -12,7 +12,7 @@ namespace SpartaDungeon2
     internal class Program
     {
         private static PlayerStat player;
-        private static List<EnemyStat> enemyList = new List<EnemyStat>();
+        private static List<EnemyStat> enemyList = new List<EnemyStat>(); // 적 스탯 리스트화 (작업자들이 작업을 수월하게 하기 위해 List 사용함)
         public static int startMe = 0;
 
         public class PlayerStat
@@ -72,6 +72,7 @@ namespace SpartaDungeon2
                 isAlive = true;
             }
 
+            // 적 정보 출력 메서드
             public void MonsterInfo()
             {
                 Console.WriteLine($"Lv.{Level} {Name} HP {HpValue}");
@@ -92,6 +93,7 @@ namespace SpartaDungeon2
             }
         }
 
+        // 게임 시작 화면
         static void MainScene()
         {
             Console.Clear();
@@ -118,6 +120,7 @@ namespace SpartaDungeon2
             }
         }
 
+        // 1. 상태 보기 화면
         static void Status()
         {
             Console.Clear();
@@ -150,11 +153,13 @@ namespace SpartaDungeon2
             Console.ReadKey(true);
         }
 
+        // 2. 전투 시작
         static void Battle()
         {
             // 영선
             InitEnemy();
 
+            // 공격 키 입력 
             Console.WriteLine("1. 공격");
             Console.WriteLine();
             Console.WriteLine("원하시는 행동을 입력해주세요.");
@@ -163,18 +168,18 @@ namespace SpartaDungeon2
 
             if (input == "1")
             {
-                // 4번
+                // 영재
                 while (IsBattleFinished())
                 {
-                    //2번
+                    // 관철
                     PlayerPhase();
-                    // 3번
+                    // 현웅
                     EnemyPhase();
                 }
             }
         }
 
-        // 4번
+        // 영재
         public static bool IsBattleFinished()
         {
             return true;
@@ -321,7 +326,7 @@ namespace SpartaDungeon2
             
         }
 
-        // 4번
+        // 영재
         public static void PrintBattleResult(bool victory = true) // 전투 결과창
         {
             Console.Clear();
@@ -392,10 +397,14 @@ namespace SpartaDungeon2
                 enemyList.Add(enemy);
             }
 
+            // 적 정보 출력 메서드
             PrintEnemyStatus();
+
+            // 플레이어 정보 출력 메서드
             PrintPlayerStatus();
         }
 
+        // 적의 수 만큼 적 정보 출력
         static void PrintEnemyStatus()
         {
             for (int i = 0; i < enemyList.Count; i++)
